@@ -157,5 +157,8 @@ button:hover {
     color: inherit; 
 }
 
-
+.error-message {
+    color: #fff;
+    margin-top: 2%;
+}
 

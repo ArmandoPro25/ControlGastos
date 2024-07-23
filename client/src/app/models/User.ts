@@ -3,9 +3,9 @@ export interface User{
     Nombre?: string;
     ApPaterno?: string;
     ApMaterno?: string;
-    NumTelefono?: number;
+    NumTelefono?: string;
     Correo?: string;
-    FechaNacimiento?: Date;
+    FechaNacimiento?: string;
     Usuario?: string;
     Contrasena: string;
 }

@@ -1,15 +1,28 @@
 {
-    "user": [
-        {
-            "IdUsuario": 1,
-            "Nombre": "Armando",
-            "ApPaterno": "Ruano",
-            "ApMaterno": "Mascorro",
-            "NumTelefono": 4681386739,
-            "Correo": "ruanoarmando54@gmail.com",
-            "FechaNacimiento": "18/01/2005",
-            "Usuario": "Armando2498q",
-            "Contrasena": "linux0"
-        }
-    ]
+  "user": [
+    {
+      "IdUsuario": 1,
+      "Nombre": "Armando",
+      "ApPaterno": "Ruano",
+      "ApMaterno": "Mascorro",
+      "NumTelefono": "4681386739",
+      "Correo": "ruanoarmando54@gmail.com",
+      "FechaNacimiento": "18/01/2005",
+      "Usuario": "Armando2498q",
+      "Contrasena": "linux0",
+      "id": "3223"
+    },
+    {
+      "id": "52d5",
+      "Nombre": "Rene",
+      "ApPaterno": "Lazcano",
+      "ApMaterno": "Gutierrez",
+      "NumTelefono": "1234567890",
+      "Correo": "rene@gg.com",
+      "FechaNacimiento": "1987-05-15",
+      "Usuario": "Renegul8808",
+      "Contrasena": "ggpapa",
+      "confirmarContrasena": "ggpapa"
+    }
+  ]
 }

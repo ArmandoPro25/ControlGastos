@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 
@@ -7,33 +7,29 @@ import { UserService } from '../../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  users: any[] = [];
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+export class LoginComponent {
+  errorMessage: string | null = null; // Variable para almacenar el mensaje de error
 
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {
-    this.userService.getUsers().subscribe(
-      (resp: any) => {
-        this.users = resp.user;
-      },
-      err => console.log(err)
-    );
-  }
+  onSubmit(loginForm: any) {
+    const { username, password } = loginForm.value;
 
-  onSubmit() {
-    const user = this.users.find(u => u.Usuario === this.username);
-    if (!user) {
-      this.errorMessage = 'El usuario no existe';
+    if (!username || !password) {
+      this.errorMessage = 'Los campos no pueden estar vacíos';
       return;
     }
-    if (user.Contrasena !== this.password) {
-      this.errorMessage = 'La contraseña es incorrecta';
-      return;
-    }
-    this.router.navigate(['/home-user']);
+
+    this.userService.getUsers().subscribe(users => {
+      const user = users.find((user: any) => user.Usuario === username && user.Contrasena === password);
+
+      if (user) {
+        this.router.navigate(['/home-user']);
+      } else {
+        this.errorMessage = 'Usuario o contraseña incorrectos'; // Mensaje de error si el usuario o la contraseña son incorrectos
+      }
+    }, error => {
+      this.errorMessage = 'Error al validar usuario'; // Manejo de errores del servidor
+    });
   }
 }

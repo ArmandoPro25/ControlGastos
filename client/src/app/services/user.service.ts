@@ -7,20 +7,15 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserService {
+  private API_URI = 'http://localhost:3000/user'; 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  API_URI = 'http://localhost:3000/user'; 
+  createUser(user: User): Observable<any> {
+    return this.http.post(this.API_URI, user);
+  }
 
   getUsers(): Observable<any> {
     return this.http.get(`${this.API_URI}`);
-  }
-
-  getUser(IdUsuario: string): Observable<any> {
-    return this.http.get(`${this.API_URI}/${IdUsuario}`);
-  }
-
-  saveUser(user: User): Observable<any> {
-    return this.http.post(`${this.API_URI}`, user);
   }
 }

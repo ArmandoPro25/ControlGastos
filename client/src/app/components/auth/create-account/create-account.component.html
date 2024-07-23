@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
 <body>
     <div class="container">
         <header class="header">
@@ -17,42 +19,71 @@
         <main class="main-content">
             <div class="container">
                 <h1>Ingresa tus Datos</h1>
-                <form id="registroForm" class="form-grid">
+                <form (ngSubmit)="onSubmit(createAccountForm)" #createAccountForm="ngForm" class="form-grid">
                     <div class="form-group">
                         <label for="nombre">Nombre(s)</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                        <input type="text" id="nombre" name="nombre" [(ngModel)]="formData.Nombre" #nombre="ngModel" placeholder="Nombre" required>
+                        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="error-message">
+                            <div *ngIf="nombre.errors?.['required']">El nombre es requerido.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="apellidoPaterno">Apellido Paterno</label>
-                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" required>
+                        <input type="text" id="apellidoPaterno" name="apellidoPaterno" [(ngModel)]="formData.ApPaterno" #apellidoPaterno="ngModel" placeholder="Apellido Paterno" required>
+                        <div *ngIf="apellidoPaterno.invalid && (apellidoPaterno.dirty || apellidoPaterno.touched)" class="error-message">
+                            <div *ngIf="apellidoPaterno.errors?.['required']">El apellido paterno es requerido.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="apellidoMaterno">Apellido Materno</label>
-                        <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required>
+                        <input type="text" id="apellidoMaterno" name="apellidoMaterno" [(ngModel)]="formData.ApMaterno" #apellidoMaterno="ngModel" placeholder="Apellido Materno" required>
+                        <div *ngIf="apellidoMaterno.invalid && (apellidoMaterno.dirty || apellidoMaterno.touched)" class="error-message">
+                            <div *ngIf="apellidoMaterno.errors?.['required']">El apellido materno es requerido.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Num. Teléfono</label>
-                        <input type="text" id="telefono" name="telefono" pattern="[0-9]{1,}" title="Ingresa solo números" placeholder="1234567890" required>
+                        <input type="text" id="telefono" name="telefono" [(ngModel)]="formData.NumTelefono" #telefono="ngModel" pattern="[0-9]{10}" title="Ingresa solo números, máximo 10 dígitos" placeholder="1234567890" required>
+                        <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="error-message">
+                            <div *ngIf="telefono.errors?.['required']">El número de teléfono es requerido.</div>
+                            <div *ngIf="telefono.errors?.['pattern']">Ingresa un número válido de 10 dígitos.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo Electrónico</label>
-                        <input type="email" id="correo" name="correo" placeholder="ejemplo@dominio.com" required>
+                        <input type="email" id="correo" name="correo" [(ngModel)]="formData.Correo" #correo="ngModel" placeholder="ejemplo@dominio.com" required>
+                        <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="error-message">
+                            <div *ngIf="correo.errors?.['required']">El correo electrónico es requerido.</div>
+                            <div *ngIf="correo.errors?.['email']">Ingresa un correo electrónico válido.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="formData.FechaNacimiento" #fechaNacimiento="ngModel" required>
+                        <div *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)" class="error-message">
+                            <div *ngIf="fechaNacimiento.errors?.['required']">La fecha de nacimiento es requerida.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="usuario">Crear Usuario</label>
-                        <input type="text" id="usuario" name="usuario" placeholder="usuario123" required>
+                        <input type="text" id="usuario" name="usuario" [(ngModel)]="formData.Usuario" #usuario="ngModel" placeholder="usuario123" required>
+                        <div *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)" class="error-message">
+                            <div *ngIf="usuario.errors?.['required']">El usuario es requerido.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="contrasena">Crear Contraseña</label>
-                        <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
+                        <input type="password" id="contrasena" name="contrasena" [(ngModel)]="formData.Contrasena" #contrasena="ngModel" placeholder="********" required>
+                        <div *ngIf="contrasena.invalid && (contrasena.dirty || contrasena.touched)" class="error-message">
+                            <div *ngIf="contrasena.errors?.['required']">La contraseña es requerida.</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="confirmarContrasena">Confirma Contraseña</label>
-                        <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="********" required>
+                        <input type="password" id="confirmarContrasena" name="confirmarContrasena" [(ngModel)]="formData.confirmarContrasena" #confirmarContrasena="ngModel" placeholder="********" required>
+                        <div *ngIf="confirmarContrasena.invalid && (confirmarContrasena.dirty || confirmarContrasena.touched)" class="error-message">
+                            <div *ngIf="confirmarContrasena.errors?.['required']">La confirmación de contraseña es requerida.</div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
                 </form>
@@ -61,5 +92,3 @@
     </div>
 </body>
 </html>
-
-
