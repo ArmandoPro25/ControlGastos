@@ -1,0 +1,15 @@
+{
+    "user": [
+        {
+            "IdUsuario": 1,
+            "Nombre": "Armando",
+            "ApPaterno": "Ruano",
+            "ApMaterno": "Mascorro",
+            "NumTelefono": 4681386739,
+            "Correo": "ruanoarmando54@gmail.com",
+            "FechaNacimiento": "18/01/2005",
+            "Usuario": "Armando2498q",
+            "Contrasena": "linux0"
+        }
+    ]
+}
